@@ -1,0 +1,161 @@
+/* Configurações Globais e Variáveis de Cores (Modo Escuro Padrão) */
+:root {
+    --bg-color: #0d0d0d;       /* Preto */
+    --panel-bg: #1a1a1a;       /* Cinza Escuro */
+    --text-primary: #ffffff;   /* Branco */
+    --text-secondary: #b3b3b3; /* Cinza Claro */
+    --neon-color: #00ff66;     /* Verde Neon */
+    --neon-glow: 0 0 10px #00ff66, 0 0 25px #00ff66;
+    --border-color: #333333;   /* Cinza Médio */
+}
+
+/* Variáveis para o Modo Claro */
+body.light-mode {
+    --bg-color: #e6e6e6;       /* Cinza bem claro */
+    --panel-bg: #ffffff;       /* Branco */
+    --text-primary: #121212;   /* Preto fosco */
+    --text-secondary: #4a4a4a; /* Cinza escuro */
+    --neon-color: #00993d;     /* Verde escuro/neon adaptado para leitura */
+    --neon-glow: 0 0 5px rgba(0, 153, 61, 0.4);
+    --border-color: #cccccc;   /* Cinza claro */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+}
+
+/* Cabeçalho e Modo Escuro/Claro */
+header {
+    margin-bottom: 25px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: var(--text-primary);
+    font-size: 2rem;
+    letter-spacing: 3px;
+}
+
+.neon-text {
+    color: var(--neon-color);
+    text-shadow: var(--neon-glow);
+}
+
+/* Botão de Troca de Tema */
+.neon-btn-sm {
+    background: transparent;
+    border: 1px solid var(--neon-color);
+    color: var(--neon-color);
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.neon-btn-sm:hover {
+    background-color: var(--neon-color);
+    color: var(--bg-color);
+    box-shadow: var(--neon-glow);
+}
+
+/* Abas de Navegação (Tabs) */
+.tabs {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+}
+
+.tab-btn.active {
+    color: var(--neon-color);
+    border-bottom: 3px solid var(--neon-color);
+}
+
+/* Painel de Conteúdo */
+.panel {
+    background-color: var(--panel-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    padding: 35px;
+    min-height: 350px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+.panel h2 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    border-left: 4px solid var(--neon-color);
+    padding-left: 10px;
+}
+
+.panel p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+    text-align: justify;
+    font-size: 0.95rem;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.75rem;
+    color: var(--border-color);
+}
+
+/* Animação de transição das abas */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
