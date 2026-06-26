@@ -1,32 +1,24 @@
-// LÓGICA DE ALTERNÂNCIA DE ABAS
-const tabButtons = document.querySelectorAll('.tab-btn');
-const tabContents = document.querySelectorAll('.tab-content');
+document.addEventListener("DOMContentLoaded", () => {
+    const botoes = document.querySelectorAll(".aba-botao");
+    const textos = document.querySelectorAll(".texto-conteudo");
 
-tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Remove a classe ativa de todos os botões e conteúdos
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
+    botoes.forEach(botao => {
+        botao.addEventListener("click", () => {
+            // 1. Remove a classe 'ativa' de todos os botões
+            botoes.forEach(b => b.classList.remove("ativa"));
+            
+            // 2. Esconde todos os blocos de texto
+            textos.forEach(t => t.classList.remove("ativo"));
 
-        // Adiciona a classe ativa ao botão clicado
-        button.classList.add('active');
-        
-        // Ativa o conteúdo correspondente baseado no atributo data-tab
-        const targetTab = button.getAttribute('data-tab');
-        document.getElementById(targetTab).classList.add('active');
+            // 3. Adiciona a classe 'ativa' ao botão clicado
+            botao.classList.add("ativa");
+
+            // 4. Mostra o texto correspondente baseado no atributo 'data-aba'
+            const alvoId = botao.getAttribute("data-aba");
+            const textoAlvo = document.getElementById(alvoId);
+            if (textoAlvo) {
+                textoAlvo.classList.add("ativo");
+            }
+        });
     });
-});
-
-// LÓGICA DE ALTERNÂNCIA DE MODO CLARO / ESCURO
-const themeToggleBtn = document.getElementById('theme-toggle');
-const body = document.body;
-
-themeToggleBtn.addEventListener('click', () => {
-    if (body.classList.contains('dark-mode')) {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
-    } else {
-        body.classList.remove('light-mode');
-        body.classList.add('dark-mode');
-    }
 });
