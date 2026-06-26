@@ -1,5 +1,107 @@
+/* ==========================================================================
+   CONFIGURAÇÃO DO FUNDO (IMAGEM FUTURISTA)
+   ========================================================================== */
 body {
     background: url('https://thumbs.dreamstime.com/b/fazenda-futurista-com-agricultura-vertical-verduras-esverdeadas-sem-olhar-para-montanha-captura-de-cena-uma-harmonia-entre-379712949.jpg?w=992') no-repeat center center / cover fixed;
     margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace; /* Fonte estilo terminal/código */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   CONTAINER DO PAINEL CYBERPUNK (PRETO E VERDE NEON)
+   ========================================================================== */
+.painel-futurista {
+    background-color: rgba(0, 0, 0, 0.85); /* Preto profundo semi-transparente */
+    border: 2px solid #00ff66; /* Borda Verde Neon */
+    box-shadow: 0 0 20px #00ff66, inset 0 0 10px rgba(0, 255, 102, 0.3); /* Brilho neon externo e interno */
+    border-radius: 10px;
+    width: 90%;
+    max-width: 650px;
+    overflow: hidden;
+    backdrop-filter: blur(5px); /* Desfoque na imagem atrás do painel */
+}
+
+/* ==========================================================================
+   ESTRUTURA DAS ABAS (NAVEGAÇÃO)
+   ========================================================================== */
+.abas {
+    display: flex;
+    background-color: #111111;
+    border-bottom: 2px solid #00ff66;
+}
+
+/* Oculta os inputs de rádio HTML padrões */
+input[type="radio"] {
+    display: none;
+}
+
+/* Botões seletores das abas */
+.aba-botao {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888888;
+    transition: all 0.3s ease;
+}
+
+/* Efeito hover nos botões */
+.aba-botao:hover {
+    color: #00ff66;
+    background-color: rgba(0, 255, 102, 0.1);
+}
+
+/* ==========================================================================
+   CONTEÚDO E TEXTOS
+   ========================================================================== */
+.conteudo-abas {
+    padding: 30px;
+    min-height: 150px;
+}
+
+.texto-aba {
+    display: none; /* Esconde os textos por padrão */
+    line-height: 1.6;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Títulos neon de cada aba */
+.texto-aba h2 {
+    color: #00ff66;
+    margin-top: 0;
+    text-shadow: 0 0 10px #00ff66;
+    font-size: 1.5rem;
+}
+
+/* ==========================================================================
+   LÓGICA DE ALTERNÂNCIA DE ABAS (CSS PURO)
+   ========================================================================== */
+#tab1:checked ~ .abas .aba-botao[for="tab1"],
+#tab2:checked ~ .abas .aba-botao[for="tab2"],
+#tab3:checked ~ .abas .aba-botao[for="tab3"] {
+    color: #00ff66;
+    background-color: #000000;
+    text-shadow: 0 0 8px #00ff66;
+    border-bottom: 3px solid #00ff66;
+}
+
+#tab1:checked ~ .conteudo-abas #conteudo1,
+#tab2:checked ~ .conteudo-abas #conteudo2,
+#tab3:checked ~ .conteudo-abas #conteudo3 {
+    display: block; /* Mostra o bloco de texto correspondente à aba ativa */
+}
+
+/* Animação para transição suave do texto */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
