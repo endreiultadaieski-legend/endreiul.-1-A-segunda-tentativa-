@@ -1,107 +1,125 @@
 /* ==========================================================================
-   CONFIGURAÇÃO DO FUNDO (IMAGEM FUTURISTA)
+   CONFIGURAÇÃO DA SEÇÃO INFORMATIVA
    ========================================================================== */
-body {
-    background: url('https://thumbs.dreamstime.com/b/fazenda-futurista-com-agricultura-vertical-verduras-esverdeadas-sem-olhar-para-montanha-captura-de-cena-uma-harmonia-entre-379712949.jpg?w=992') no-repeat center center / cover fixed;
-    margin: 0;
-    padding: 0;
-    font-family: 'Courier New', Courier, monospace; /* Fonte estilo terminal/código */
+.secao-informativa {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f5;
+    padding: 40px 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    color: #ffffff;
 }
 
-/* ==========================================================================
-   CONTAINER DO PAINEL CYBERPUNK (PRETO E VERDE NEON)
-   ========================================================================== */
-.painel-futurista {
-    background-color: rgba(0, 0, 0, 0.85); /* Preto profundo semi-transparente */
-    border: 2px solid #00ff66; /* Borda Verde Neon */
-    box-shadow: 0 0 20px #00ff66, inset 0 0 10px rgba(0, 255, 102, 0.3); /* Brilho neon externo e interno */
-    border-radius: 10px;
-    width: 90%;
-    max-width: 650px;
+/* Container Principal do Painel */
+.painel-abas {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 800px;
     overflow: hidden;
-    backdrop-filter: blur(5px); /* Desfoque na imagem atrás do painel */
 }
 
 /* ==========================================================================
-   ESTRUTURA DAS ABAS (NAVEGAÇÃO)
+   MENU DE NAVEGAÇÃO (ABAS)
    ========================================================================== */
-.abas {
+.abas-nav {
     display: flex;
-    background-color: #111111;
-    border-bottom: 2px solid #00ff66;
+    background-color: #f9fbf9;
+    border-bottom: 2px solid #e2ebd5;
 }
 
-/* Oculta os inputs de rádio HTML padrões */
-input[type="radio"] {
-    display: none;
-}
-
-/* Botões seletores das abas */
 .aba-botao {
     flex: 1;
-    padding: 15px;
+    padding: 18px 10px;
     text-align: center;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #556b2f; /* Verde oliva escuro */
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #888888;
+    letter-spacing: 0.5px;
     transition: all 0.3s ease;
 }
 
-/* Efeito hover nos botões */
 .aba-botao:hover {
-    color: #00ff66;
-    background-color: rgba(0, 255, 102, 0.1);
+    background-color: #edf3e8;
+    color: #2e8b57;
+}
+
+/* Classe aplicada pelo JS quando a aba estiver ativa */
+.aba-botao.ativa {
+    color: #2e8b57;
+    background-color: #ffffff;
+    border-bottom-color: #2e8b57;
+    font-weight: 700;
 }
 
 /* ==========================================================================
-   CONTEÚDO E TEXTOS
+   CONTEÚDO DOS TEXTOS
    ========================================================================== */
-.conteudo-abas {
-    padding: 30px;
-    min-height: 150px;
+.conteudo-painel {
+    padding: 35px;
+    min-height: 200px;
 }
 
-.texto-aba {
-    display: none; /* Esconde os textos por padrão */
-    line-height: 1.6;
-    animation: fadeIn 0.5s ease;
+.texto-conteudo {
+    display: none; /* Esconde todos por padrão */
+    line-height: 1.7;
+    color: #333333;
+    animation: suavizarEntrada 0.4s ease-in-out;
 }
 
-/* Títulos neon de cada aba */
-.texto-aba h2 {
-    color: #00ff66;
+/* Classe aplicada pelo JS para mostrar o texto da aba ativa */
+.texto-conteudo.ativo {
+    display: block;
+}
+
+.texto-conteudo h2 {
+    color: #2e8b57;
     margin-top: 0;
-    text-shadow: 0 0 10px #00ff66;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    border-bottom: 2px solid #edf3e8;
+    padding-bottom: 10px;
+}
+
+.texto-conteudo p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* Bloco de destaque para dados importantes */
+.destaque-dado {
+    background-color: #f0f7f4;
+    border-left: 4px solid #2e8b57;
+    padding: 12px 15px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #444;
+}
+
+/* Animação de transição suave */
+@keyframes suavizarEntrada {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ==========================================================================
-   LÓGICA DE ALTERNÂNCIA DE ABAS (CSS PURO)
+   RESPONSIVIDADE (CELULARES)
    ========================================================================== */
-#tab1:checked ~ .abas .aba-botao[for="tab1"],
-#tab2:checked ~ .abas .aba-botao[for="tab2"],
-#tab3:checked ~ .abas .aba-botao[for="tab3"] {
-    color: #00ff66;
-    background-color: #000000;
-    text-shadow: 0 0 8px #00ff66;
-    border-bottom: 3px solid #00ff66;
-}
-
-#tab1:checked ~ .conteudo-abas #conteudo1,
-#tab2:checked ~ .conteudo-abas #conteudo2,
-#tab3:checked ~ .conteudo-abas #conteudo3 {
-    display: block; /* Mostra o bloco de texto correspondente à aba ativa */
-}
-
-/* Animação para transição suave do texto */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
+@media (max-width: 600px) {
+    .abas-nav {
+        flex-direction: column;
+    }
+    .aba-botao {
+        border-bottom: 1px solid #e2ebd5;
+        padding: 14px;
+    }
+    .aba-botao.ativa {
+        border-bottom: 1px solid #2e8b57;
+        border-left: 4px solid #2e8b57;
+    }
 }
